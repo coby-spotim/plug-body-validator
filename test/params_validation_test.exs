@@ -13,7 +13,8 @@ defmodule ParamsValidation.Test do
     conn = %{conn | path_params: %{path_param: "lol"}}
 
     assert %{status: nil} =
-             conn |> put_private(:params_validator, validator)
+             conn
+             |> put_private(:params_validator, validator)
              |> params_validation(nil)
   end
 
@@ -24,7 +25,8 @@ defmodule ParamsValidation.Test do
     conn = %{conn | path_params: %{path_param: 10}}
 
     assert %{state: :sent, status: 400} =
-             conn |> put_private(:params_validator, validator)
+             conn
+             |> put_private(:params_validator, validator)
              |> params_validation(nil)
   end
 
@@ -40,7 +42,8 @@ defmodule ParamsValidation.Test do
     conn = %{conn | path_params: %{path_param: "10"}}
 
     assert %{state: :unset, body_params: %{body_param: 10, optional_body_param: nil}} =
-             conn |> put_private(:params_validator, validator)
+             conn
+             |> put_private(:params_validator, validator)
              |> params_validation(nil)
   end
 
@@ -56,7 +59,8 @@ defmodule ParamsValidation.Test do
     conn = %{conn | path_params: %{path_param: "10"}}
 
     assert %{state: :sent, status: 400} =
-             conn |> put_private(:params_validator, validator)
+             conn
+             |> put_private(:params_validator, validator)
              |> params_validation(nil)
   end
 
@@ -72,7 +76,8 @@ defmodule ParamsValidation.Test do
     conn = %{conn | path_params: %{path_param: "10"}}
 
     assert %{state: :sent, status: 400} =
-             conn |> put_private(:params_validator, validator)
+             conn
+             |> put_private(:params_validator, validator)
              |> params_validation(nil)
   end
 
