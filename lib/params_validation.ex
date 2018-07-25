@@ -63,9 +63,6 @@ defmodule ParamsValidation do
       {:ok, _applied_params} ->
         conn
 
-      :skipped ->
-        conn
-
       {:error, errors} ->
         if log_errors?, do: log_error(errors)
 
