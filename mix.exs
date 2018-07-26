@@ -8,7 +8,8 @@ defmodule ParamsValidation.MixProject do
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      package: package()
+      package: package(),
+      dialyzer: [plt_add_deps: [:project]]
     ]
   end
 
@@ -20,12 +21,15 @@ defmodule ParamsValidation.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:cowboy, "~> 1.0.0"},
-      {:plug, "~> 1.0"},
-      {:poison, "~> 3.0"},
-      {:ecto, "~> 2.2"},
+      # Needed for production environment
+      {:plug, ">= 0.0.0"},
+      {:poison, ">= 0.0.0"},
+      {:ecto, ">= 0.0.0"},
+      # Only needed in dev and test environments
+      {:cowboy, "~> 1.0.0", only: :dev},
       {:credo, ">= 0.0.0", only: :dev},
-      {:ex_doc, ">= 0.0.0", only: :dev}
+      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:dialyxir, ">= 0.0.0", only: :dev}
     ]
   end
 
